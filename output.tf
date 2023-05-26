@@ -5,6 +5,7 @@ output "InternetGw" {
 output "PrivateSecurityGroup" {
 	value = {
 		"id" : aws_security_group.PrivateSecurityGroup.id
+		"name" : aws_security_group.PrivateSecurityGroup.name
 	}
 }
 
@@ -25,6 +26,7 @@ output "Private2Subnet" {
 output "PublicSecurityGroup" {
 	value = {
 		"id" : aws_security_group.PublicSecurityGroup.id
+		"name" : aws_security_group.PublicSecurityGroup.name
 	}
 }
 
