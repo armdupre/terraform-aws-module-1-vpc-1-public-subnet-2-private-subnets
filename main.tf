@@ -4,9 +4,9 @@ resource "aws_vpc" "Vpc" {
 	enable_dns_support = local.VpcEnableDnsSupport
 	enable_dns_hostnames = local.VpcEnableDnsHostnames
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_VPC_${local.RegionTag}"
+		Name = local.VpcName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
@@ -15,9 +15,9 @@ resource "aws_subnet" "PublicSubnet" {
 	cidr_block = local.PublicSubnetCidrBlock
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_PUBLIC_SUBNET_${local.RegionTag}"
+		Name = local.PublicSubnetName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
@@ -26,9 +26,9 @@ resource "aws_subnet" "Private1Subnet" {
 	cidr_block = local.Private1SubnetCidrBlock
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_PRIVATE1_SUBNET_${local.RegionTag}"
+		Name = local.Private1SubnetName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
@@ -37,20 +37,20 @@ resource "aws_subnet" "Private2Subnet" {
 	cidr_block = local.Private2SubnetCidrBlock
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_PRIVATE2_SUBNET_${local.RegionTag}"
+		Name = local.Private2SubnetName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
 resource "aws_security_group" "PublicSecurityGroup" {
-	name = "${local.UserLoginTag}_${local.ProjectTag}_PUBLIC_SECURITY_GROUP_${local.RegionTag}"
-	description = "${local.UserLoginTag}_${local.ProjectTag}_PUBLIC_SECURITY_GROUP_${local.RegionTag}"
+	name = local.PublicSecurityGroupName
+	description = local.PublicSecurityGroupName
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_PUBLIC_SECURITY_GROUP_${local.RegionTag}"
+		Name = local.PublicSecurityGroupName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
@@ -82,17 +82,17 @@ resource "aws_security_group_rule" "PublicEgress1" {
 }
 
 resource "aws_security_group" "PrivateSecurityGroup" {
-	name = "${local.UserLoginTag}_${local.ProjectTag}_PRIVATE_SECURITY_GROUP_${local.RegionTag}"
-	description = "${local.UserLoginTag}_${local.ProjectTag}_PRIVATE_SECURITY_GROUP_${local.RegionTag}"
+	name = local.PrivateSecurityGroupName
+	description = local.PrivateSecurityGroupName
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_PRIVATE_SECURITY_GROUP_${local.RegionTag}"
+		Name = local.PrivateSecurityGroupName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
-resource "aws_security_group_rule" "Private1Ingress1" {
+resource "aws_security_group_rule" "PrivateIngress1" {
 	type = "ingress"
 	security_group_id = aws_security_group.PrivateSecurityGroup.id
 	protocol = "-1"
@@ -101,7 +101,7 @@ resource "aws_security_group_rule" "Private1Ingress1" {
 	source_security_group_id = aws_security_group.PrivateSecurityGroup.id
 }
 
-resource "aws_security_group_rule" "Private1Egress1" {
+resource "aws_security_group_rule" "PrivateEgress1" {
 	type = "egress"
 	security_group_id = aws_security_group.PrivateSecurityGroup.id
 	protocol = "-1"
@@ -124,9 +124,9 @@ resource "aws_default_security_group" "DefaultEgress1" {
 resource "aws_internet_gateway" "InternetGw" {
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_INTERNET_GW_${local.RegionTag}"
+		Name = local.InternetGwName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
@@ -142,27 +142,27 @@ resource "aws_route" "PublicRoute" {
 resource "aws_route_table" "PublicRouteTable" {
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_PUBLIC_ROUTE_TABLE_${local.RegionTag}"
+		Name = local.PublicRouteTableName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
 resource "aws_route_table" "Private1RouteTable" {
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_PRIVATE1_ROUTE_TABLE_${local.RegionTag}"
+		Name = local.Private1RouteTableName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
 resource "aws_route_table" "Private2RouteTable" {
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
-		Name = "${local.UserLoginTag}_${local.ProjectTag}_PRIVATE2_ROUTE_TABLE_${local.RegionTag}"
+		Name = local.Private2RouteTableName
 		Owner = local.UserEmailTag
-		Project = local.ProjectTag
+		Project = local.UserProjectTag
 	}
 }
 
