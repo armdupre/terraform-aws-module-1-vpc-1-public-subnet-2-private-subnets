@@ -1,8 +1,10 @@
 output "InternetGw" {
+	description = "Internet Gateway resource associated with the virtual private cloud"
 	value = aws_internet_gateway.InternetGw
 }
 
 output "PrivateSecurityGroup" {
+	description = "Security group resource associated with the private subnet"
 	value = {
 		"id" : aws_security_group.PrivateSecurityGroup.id
 		"name" : aws_security_group.PrivateSecurityGroup.name
@@ -10,6 +12,7 @@ output "PrivateSecurityGroup" {
 }
 
 output "Private1Subnet" {
+	description = "Subnet resource associated with the first private subnet"
 	value = {
 		"availability_zone" : aws_subnet.Private1Subnet.availability_zone
 		"id" : aws_subnet.Private1Subnet.id
@@ -17,6 +20,7 @@ output "Private1Subnet" {
 }
 
 output "Private2Subnet" {
+	description = "Subnet resource associated with the second private subnet"
 	value = {
 		"availability_zone" : aws_subnet.Private2Subnet.availability_zone
 		"id" : aws_subnet.Private2Subnet.id
@@ -24,6 +28,7 @@ output "Private2Subnet" {
 }
 
 output "PublicSecurityGroup" {
+	description = "Security group resource associated with the public subnet"
 	value = {
 		"id" : aws_security_group.PublicSecurityGroup.id
 		"name" : aws_security_group.PublicSecurityGroup.name
@@ -31,6 +36,7 @@ output "PublicSecurityGroup" {
 }
 
 output "PublicSubnet" {
+	description = "Subnet resource associated with the public subnet"
 	value = {
 		"availability_zone" : aws_subnet.PublicSubnet.availability_zone
 		"id" : aws_subnet.PublicSubnet.id
@@ -38,6 +44,7 @@ output "PublicSubnet" {
 }
 
 output "Vpc" {
+	description = "Vpc resource associated with the virtual private cloud"
 	value = {
 		"assign_generated_ipv6_cidr_block" : aws_vpc.Vpc.assign_generated_ipv6_cidr_block
 		"cidr_block" : aws_vpc.Vpc.cidr_block
