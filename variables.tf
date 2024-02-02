@@ -38,6 +38,11 @@ variable "PublicSubnetCidrBlock" {
 	type = string
 }
 
+variable "PublicSubnetMapPublicIpOnLaunch" {
+	default = false
+	type = bool
+}
+
 variable "Region" {
 	default = "us-east-1"
 	description = "Geographical location where resources can be hosted" 
@@ -77,7 +82,7 @@ variable "UserProjectTag" {
 }
 
 variable "Version" {
-	default = "10-00"
+	default = "2-6"
 	description = "Versioning of the application using the deployment"
 	type = string
 }

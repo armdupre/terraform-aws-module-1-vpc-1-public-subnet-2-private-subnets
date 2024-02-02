@@ -13,6 +13,7 @@ resource "aws_vpc" "Vpc" {
 resource "aws_subnet" "PublicSubnet" {
 	availability_zone = local.PublicSubnetAvailabilityZone
 	cidr_block = local.PublicSubnetCidrBlock
+	map_public_ip_on_launch = local.PublicSubnetMapPublicIpOnLaunch
 	vpc_id = aws_vpc.Vpc.id
 	tags = {
 		Name = local.PublicSubnetName
